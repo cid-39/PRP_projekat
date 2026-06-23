@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="UPCommon/UPCommon.csproj" />
+  <Project Path="UPDeveloper/UPDeveloper.csproj" />
+  <Project Path="UPProjectManager/UPProjectManager.csproj" />
+</Solution>
