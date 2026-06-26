@@ -41,10 +41,11 @@ RETURN
 
 
 GO
--- 2. KREIRANJE PROCEDURE: api_pm.uprPrikazAktivnihClanovaPoProjektu
+-- 2. KREIRANJE PROCEDURE: spec.uprPrikazAktivnihClanovaPoProjektu
 -- ============================================================================
-CREATE PROCEDURE api_pm.uprPrikazAktivnihClanovaPoProjektu
+CREATE PROCEDURE spec.uprPrikazAktivnihClanovaPoProjektu
 @idProjekta INT=NULL
+WITH ENCRYPTION
 AS
 BEGIN
     BEGIN TRY
@@ -66,8 +67,21 @@ END
 
 
 GO
--- 3. DODELA PRAVA ROLE-U DataProviderPM
+-- 3. WRAPPER I DODELA PRAVA ROLE-U DataProviderPM
 -- ============================================================================
+CREATE PROCEDURE api_pm.uprPrikazAktivnihClanovaPoProjektu
+@idProjekta INT=NULL
+AS
+BEGIN
+    BEGIN TRY
+        EXECUTE spec.uprPrikazAktivnihClanovaPoProjektu @idProjekta = @idProjekta;
+    END TRY
+    BEGIN CATCH
+        DECLARE @ErrorMessage AS NVARCHAR (4000) = ERROR_MESSAGE();
+        RAISERROR (@ErrorMessage, 16, 1);
+    END CATCH
+END
+
 GRANT EXECUTE
     ON api_pm.uprPrikazAktivnihClanovaPoProjektu TO DataProviderPM;
 

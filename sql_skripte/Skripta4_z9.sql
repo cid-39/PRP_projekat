@@ -37,7 +37,7 @@ GO
 -- 2. REGISTRACIJA NET ASSEMBLY U BAZI PODATAKA
 -- ============================================================================
 CREATE ASSEMBLY ProjektniSistemClrAssembly
-    FROM 'C:\Users\Skully\source\repos\SUP_z9\bin\Debug\SUP_z9.dll' -- !!! MENJAJ OVU PUTANJU NA ODBRANI ALOU!!!
+    FROM 'C:\Users\Skully\source\repos\PRP_projekat\SUP_z9\bin\Debug\SUP_z9.dll' -- !!! MENJAJ OVU PUTANJU NA ODBRANI ALOU!!!
     WITH PERMISSION_SET = SAFE;
 
 
